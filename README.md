@@ -1,1 +1,2 @@
-# react-lesson3-class-component
+# Игра угадай число
+### на react classComponent
