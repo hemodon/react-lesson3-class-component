@@ -6,7 +6,7 @@ export class ClassComponent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      result: 'Результат',
+      result: `Введите число от ${this.props.min} до ${this.props.max}`,
       userNumber: '',
       randomNumber:
         Math.floor(Math.random() * (this.props.max - this.props.min + 1)) +
@@ -23,7 +23,7 @@ export class ClassComponent extends React.Component {
       this.setState((state) => {
         console.log(state);
         return {
-          result: 'Результат',
+          result: `Введите число от ${this.props.min} до ${this.props.max}`,
           userNumber: '',
           randomNumber:
             Math.floor(Math.random() * (this.props.max - this.props.min + 1)) +
@@ -32,40 +32,40 @@ export class ClassComponent extends React.Component {
           labelButton: 'Угадать',
         };
       });
-    } else {
-      this.setState((state) => ({
-        count: state.count + 1,
-      }));
-      this.setState((state) => {
-        console.log(state);
-        if (!state.userNumber) {
-          return {
-            result: `Введите число от ${this.props.min} до ${this.props.max}`,
-          };
-        }
+    }
 
-        if (state.userNumber > state.randomNumber) {
-          return {
-            userNumber: '',
-            result: `${state.userNumber} больше загаданного`,
-          };
-        }
+    this.setState((state) => ({
+      count: state.count + 1,
+    }));
+    this.setState((state) => {
+      console.log(state);
+      if (!state.userNumber) {
+        return {
+          result: `Введите число от ${this.props.min} до ${this.props.max}`,
+        };
+      }
 
-        if (state.userNumber < state.randomNumber) {
-          return {
-            userNumber: '',
-            result: `${state.userNumber} меньше загаданного`,
-          };
-        }
-
+      if (state.userNumber > state.randomNumber) {
         return {
           userNumber: '',
-          result: `Вы угадали число ${state.randomNumber},
-          за ${state.count} попыток`,
-          labelButton: 'Сыграть ещё',
+          result: `${state.userNumber} больше загаданного`,
         };
-      });
-    }
+      }
+
+      if (state.userNumber < state.randomNumber) {
+        return {
+          userNumber: '',
+          result: `${state.userNumber} меньше загаданного`,
+        };
+      }
+
+      return {
+        userNumber: '',
+        result: `Вы угадали число ${state.randomNumber},
+          за ${state.count} попыток`,
+        labelButton: 'Сыграть ещё',
+      };
+    });
   };
 
   handleChange = (e) => {
