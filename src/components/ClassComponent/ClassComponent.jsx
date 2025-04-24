@@ -9,7 +9,7 @@ export class ClassComponent extends React.Component {
       result: 'Результат',
       userNumber: '',
       randomNumber:
-        Math.floor(Math.random() * this.props.max - this.props.min) +
+        Math.floor(Math.random() * (this.props.max - this.props.min + 1)) +
         this.props.min,
       count: 0,
     };
